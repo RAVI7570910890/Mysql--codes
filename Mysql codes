@@ -1,0 +1,685 @@
+Enter password: **********
+
+mysql> show databases;
++---------------------+
+| Database            |
++---------------------+
+| information_schema  |
+| mysql               |
+| performance_schema  |
+| student_information |
+| sys                 |
+| worker_information  |
++---------------------+
+6 rows in set (0.00 sec)
+
+mysql> drop  database worker_information;
+Query OK, 0 rows affected (0.12 sec)
+
+mysql> show databses;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'databses' at line 1
+mysql> create database worker_info;
+Query OK, 1 row affected (0.14 sec)
+
+
+mysql> select * from worker where firstname like "%aj";
++-----------+-----------+----------+--------+------------+
+| worker_id | Firstname | Lastname | Salery | Department |
++-----------+-----------+----------+--------+------------+
+|         1 | Raj       | Gupta    |  50000 | Admin      |
++-----------+-----------+----------+--------+------------+
+1 row in set (0.00 sec)
+
+mysql> select * from worker where firstname like "%na";
++-----------+-----------+----------+--------+------------+
+| worker_id | Firstname | Lastname | Salery | Department |
++-----------+-----------+----------+--------+------------+
+|         6 | Krishna   | Gupta    |  48000 | hr         |
++-----------+-----------+----------+--------+------------+
+1 row in set (0.00 sec)
+
+mysql> select * from worker where firstname like "r%";
++-----------+-----------+----------+--------+------------+
+| worker_id | Firstname | Lastname | Salery | Department |
++-----------+-----------+----------+--------+------------+
+|         1 | Raj       | Gupta    |  50000 | Admin      |
+|         2 | ravi      | Verma    |  45000 | HR         |
++-----------+-----------+----------+--------+------------+
+2 rows in set (0.00 sec)
+
+mysql> select * from worker where firstname like "k%";
++-----------+-----------+----------+--------+------------+
+| worker_id | Firstname | Lastname | Salery | Department |
++-----------+-----------+----------+--------+------------+
+|         5 | khushbu   | verma    |  32000 | HR         |
+|         6 | Krishna   | Gupta    |  48000 | hr         |
++-----------+-----------+----------+--------+------------+
+2 rows in set (0.00 sec)
+
+mysql> select * from worker order by firstname;
++-----------+-----------+----------+--------+------------+
+| worker_id | Firstname | Lastname | Salery | Department |
++-----------+-----------+----------+--------+------------+
+|         3 | Abhishek  | Singh    |  28000 | Account    |
+|         4 | jyoti     | gupta    |  46000 | HR         |
+|         5 | khushbu   | verma    |  32000 | HR         |
+|         6 | Krishna   | Gupta    |  48000 | hr         |
+|         1 | Raj       | Gupta    |  50000 | Admin      |
+|         2 | ravi      | Verma    |  45000 | HR         |
++-----------+-----------+----------+--------+------------+
+6 rows in set (0.02 sec)
+
+mysql> select * from worker order by firstname, salery;
++-----------+-----------+----------+--------+------------+
+| worker_id | Firstname | Lastname | Salery | Department |
++-----------+-----------+----------+--------+------------+
+|         3 | Abhishek  | Singh    |  28000 | Account    |
+|         4 | jyoti     | gupta    |  46000 | HR         |
+|         5 | khushbu   | verma    |  32000 | HR         |
+|         6 | Krishna   | Gupta    |  48000 | hr         |
+|         1 | Raj       | Gupta    |  50000 | Admin      |
+|         2 | ravi      | Verma    |  45000 | HR         |
++-----------+-----------+----------+--------+------------+
+6 rows in set (0.00 sec)
+
+mysql> select * from worker order by salery;
++-----------+-----------+----------+--------+------------+
+| worker_id | Firstname | Lastname | Salery | Department |
++-----------+-----------+----------+--------+------------+
+|         3 | Abhishek  | Singh    |  28000 | Account    |
+|         5 | khushbu   | verma    |  32000 | HR         |
+|         2 | ravi      | Verma    |  45000 | HR         |
+|         4 | jyoti     | gupta    |  46000 | HR         |
+|         6 | Krishna   | Gupta    |  48000 | hr         |
+|         1 | Raj       | Gupta    |  50000 | Admin      |
++-----------+-----------+----------+--------+------------+
+6 rows in set (0.00 sec)
+
+mysql> select * from worker order by worker_id desc;
++-----------+-----------+----------+--------+------------+
+| worker_id | Firstname | Lastname | Salery | Department |
++-----------+-----------+----------+--------+------------+
+|         6 | Krishna   | Gupta    |  48000 | hr         |
+|         5 | khushbu   | verma    |  32000 | HR         |
+|         4 | jyoti     | gupta    |  46000 | HR         |
+|         3 | Abhishek  | Singh    |  28000 | Account    |
+|         2 | ravi      | Verma    |  45000 | HR         |
+|         1 | Raj       | Gupta    |  50000 | Admin      |
++-----------+-----------+----------+--------+------------+
+6 rows in set (0.00 sec)
+
+mysql> select * from worker order by worker_id asc;
++-----------+-----------+----------+--------+------------+
+| worker_id | Firstname | Lastname | Salery | Department |
++-----------+-----------+----------+--------+------------+
+|         1 | Raj       | Gupta    |  50000 | Admin      |
+|         2 | ravi      | Verma    |  45000 | HR         |
+|         3 | Abhishek  | Singh    |  28000 | Account    |
+|         4 | jyoti     | gupta    |  46000 | HR         |
+|         5 | khushbu   | verma    |  32000 | HR         |
+|         6 | Krishna   | Gupta    |  48000 | hr         |
++-----------+-----------+----------+--------+------------+
+6 rows in set (0.00 sec)
+
+mysql> select * from worker limit 3;
++-----------+-----------+----------+--------+------------+
+| worker_id | Firstname | Lastname | Salery | Department |
++-----------+-----------+----------+--------+------------+
+|         1 | Raj       | Gupta    |  50000 | Admin      |
+|         2 | ravi      | Verma    |  45000 | HR         |
+|         3 | Abhishek  | Singh    |  28000 | Account    |
++-----------+-----------+----------+--------+------------+
+3 rows in set (0.00 sec)
+
+mysql> select * from worker limit 3;
++-----------+-----------+----------+--------+------------+
+| worker_id | Firstname | Lastname | Salery | Department |
++-----------+-----------+----------+--------+------------+
+|         1 | Raj       | Gupta    |  50000 | Admin      |
+|         2 | ravi      | Verma    |  45000 | HR         |
+|         3 | Abhishek  | Singh    |  28000 | Account    |
++-----------+-----------+----------+--------+------------+
+3 rows in set (0.00 sec)
+
+
+
+mysql> show databases;
++---------------------+
+| Database            |
++---------------------+
+| information_schema  |
+| mysql               |
+| performance_schema  |
+| student_information |
+| sys                 |
+| worker_info         |
++---------------------+
+6 rows in set (0.00 sec)
+
+mysql> use worker_info;
+Database changed
+mysql> create table worker(worker_id integer, Firstname varchar(50), Lastname varchar(50), Salery integer, Department varchar(50));
+Query OK, 0 rows affected (0.84 sec)
+
+mysql> show tables;
++-----------------------+
+| Tables_in_worker_info |
++-----------------------+
+| worker                |
++-----------------------+
+1 row in set (0.00 sec)
+
+mysql> insert into worker(worker_id, Firstname, Lastname, Salery, Department) values(1, "Raj", "Gupta",50000, "Admin");
+Query OK, 1 row affected (0.15 sec)
+
+mysql> select * from worker;
++-----------+-----------+----------+--------+------------+
+| worker_id | Firstname | Lastname | Salery | Department |
++-----------+-----------+----------+--------+------------+
+|         1 | Raj       | Gupta    |  50000 | Admin      |
++-----------+-----------+----------+--------+------------+
+1 row in set (0.00 sec)
+
+mysql> insert into worker(worker_id, Firstname, Lastname, Salery, Department) values(2, "Ravi", "Verma",42000, "HR"), (3, "Abhishek", "Singh",28000, "Account"), (4, "jyoti", "",46000, "HR"), (5, "Krishna", "Gupta",48000, "Acconunt"), (6, "Khushbu", "verma",32000, "HR");
+Query OK, 5 rows affected (0.11 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> select * from worker;
++-----------+-----------+----------+--------+------------+
+| worker_id | Firstname | Lastname | Salery | Department |
++-----------+-----------+----------+--------+------------+
+|         1 | Raj       | Gupta    |  50000 | Admin      |
+|         2 | Ravi      | Verma    |  42000 | HR         |
+|         3 | Abhishek  | Singh    |  28000 | Account    |
+|         4 | jyoti     |          |  46000 | HR         |
+|         5 | Krishna   | Gupta    |  48000 | Acconunt   |
+|         6 | Khushbu   | verma    |  32000 | HR         |
++-----------+-----------+----------+--------+------------+
+6 rows in set (0.00 sec)
+
+mysql> select * from worker;
++-----------+-----------+----------+--------+------------+
+| worker_id | Firstname | Lastname | Salery | Department |
++-----------+-----------+----------+--------+------------+
+|         1 | Raj       | Gupta    |  50000 | Admin      |
+|         2 | Ravi      | Verma    |  42000 | HR         |
+|         3 | Abhishek  | Singh    |  28000 | Account    |
+|         4 | jyoti     |          |  46000 | HR         |
+|         5 | Krishna   | Gupta    |  48000 | Acconunt   |
+|         6 | Khushbu   | verma    |  32000 | HR         |
++-----------+-----------+----------+--------+------------+
+6 rows in set (0.00 sec)
+
+mysql> select firstname, lastname from worker where department = "account";
++-----------+----------+
+| firstname | lastname |
++-----------+----------+
+| Abhishek  | Singh    |
++-----------+----------+
+1 row in set (0.00 sec)
+
+mysql> select firstname, lastname, Salery from worker where department = "account";
++-----------+----------+--------+
+| firstname | lastname | Salery |
++-----------+----------+--------+
+| Abhishek  | Singh    |  28000 |
++-----------+----------+--------+
+1 row in set (0.00 sec)
+
+mysql> delete tables from worker where firstname ="krishna";
+ERROR 1109 (42S02): Unknown table 'tables' in MULTI DELETE
+mysql> delete table from worker where firstname ="krishna";
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'table from worker where firstname ="krishna"' at line 1
+mysql> select * from worker;
++-----------+-----------+----------+--------+------------+
+| worker_id | Firstname | Lastname | Salery | Department |
++-----------+-----------+----------+--------+------------+
+|         1 | Raj       | Gupta    |  50000 | Admin      |
+|         2 | Ravi      | Verma    |  42000 | HR         |
+|         3 | Abhishek  | Singh    |  28000 | Account    |
+|         4 | jyoti     |          |  46000 | HR         |
+|         5 | Krishna   | Gupta    |  48000 | Acconunt   |
+|         6 | Khushbu   | verma    |  32000 | HR         |
++-----------+-----------+----------+--------+------------+
+6 rows in set (0.00 sec)
+
+mysql> delete from worker where firstname ="krishna";
+Query OK, 1 row affected (0.09 sec)
+
+mysql> select * from worker;
++-----------+-----------+----------+--------+------------+
+| worker_id | Firstname | Lastname | Salery | Department |
++-----------+-----------+----------+--------+------------+
+|         1 | Raj       | Gupta    |  50000 | Admin      |
+|         2 | Ravi      | Verma    |  42000 | HR         |
+|         3 | Abhishek  | Singh    |  28000 | Account    |
+|         4 | jyoti     |          |  46000 | HR         |
+|         6 | Khushbu   | verma    |  32000 | HR         |
++-----------+-----------+----------+--------+------------+
+5 rows in set (0.00 sec)
+
+mysql> insert into worker(worker_id, Firstname, Lastname, Salery, Department) values(5, "Krishna", "Gupta",48000, "hr");
+Query OK, 1 row affected (0.05 sec)
+
+mysql> select * from worker;
++-----------+-----------+----------+--------+------------+
+| worker_id | Firstname | Lastname | Salery | Department |
++-----------+-----------+----------+--------+------------+
+|         1 | Raj       | Gupta    |  50000 | Admin      |
+|         2 | Ravi      | Verma    |  42000 | HR         |
+|         3 | Abhishek  | Singh    |  28000 | Account    |
+|         4 | jyoti     |          |  46000 | HR         |
+|         6 | Khushbu   | verma    |  32000 | HR         |
+|         5 | Krishna   | Gupta    |  48000 | hr         |
++-----------+-----------+----------+--------+------------+
+6 rows in set (0.00 sec)
+
+mysql> desc worker;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| worker_id  | int         | YES  |     | NULL    |       |
+| Firstname  | varchar(50) | YES  |     | NULL    |       |
+| Lastname   | varchar(50) | YES  |     | NULL    |       |
+| Salery     | int         | YES  |     | NULL    |       |
+| Department | varchar(50) | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+5 rows in set (0.05 sec)
+
+mysql> select * from worker;
++-----------+-----------+----------+--------+------------+
+| worker_id | Firstname | Lastname | Salery | Department |
++-----------+-----------+----------+--------+------------+
+|         1 | Raj       | Gupta    |  50000 | Admin      |
+|         2 | Ravi      | Verma    |  42000 | HR         |
+|         3 | Abhishek  | Singh    |  28000 | Account    |
+|         4 | jyoti     |          |  46000 | HR         |
+|         6 | Khushbu   | verma    |  32000 | HR         |
+|         5 | Krishna   | Gupta    |  48000 | hr         |
++-----------+-----------+----------+--------+------------+
+6 rows in set (0.00 sec)
+
+mysql> update worker set firstname = "khushbu", salery= 32000 where lastname="verma";
+Query OK, 2 rows affected (0.11 sec)
+Rows matched: 2  Changed: 2  Warnings: 0
+
+mysql> select * from worker;
++-----------+-----------+----------+--------+------------+
+| worker_id | Firstname | Lastname | Salery | Department |
++-----------+-----------+----------+--------+------------+
+|         1 | Raj       | Gupta    |  50000 | Admin      |
+|         2 | khushbu   | Verma    |  32000 | HR         |
+|         3 | Abhishek  | Singh    |  28000 | Account    |
+|         4 | jyoti     |          |  46000 | HR         |
+|         6 | khushbu   | verma    |  32000 | HR         |
+|         5 | Krishna   | Gupta    |  48000 | hr         |
++-----------+-----------+----------+--------+------------+
+6 rows in set (0.00 sec)
+
+mysql> update worker set firstname = "ravi", salery= 45000 where worker_id=2;
+Query OK, 1 row affected (0.07 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from worker;
++-----------+-----------+----------+--------+------------+
+| worker_id | Firstname | Lastname | Salery | Department |
++-----------+-----------+----------+--------+------------+
+|         1 | Raj       | Gupta    |  50000 | Admin      |
+|         2 | ravi      | Verma    |  45000 | HR         |
+|         3 | Abhishek  | Singh    |  28000 | Account    |
+|         4 | jyoti     |          |  46000 | HR         |
+|         6 | khushbu   | verma    |  32000 | HR         |
+|         5 | Krishna   | Gupta    |  48000 | hr         |
++-----------+-----------+----------+--------+------------+
+6 rows in set (0.00 sec)
+
+mysql> update worker set firstname = "Jyoti", salery= 46000 where worker_id=4;
+Query OK, 1 row affected (0.10 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from worker;
++-----------+-----------+----------+--------+------------+
+| worker_id | Firstname | Lastname | Salery | Department |
++-----------+-----------+----------+--------+------------+
+|         1 | Raj       | Gupta    |  50000 | Admin      |
+|         2 | ravi      | Verma    |  45000 | HR         |
+|         3 | Abhishek  | Singh    |  28000 | Account    |
+|         4 | Jyoti     |          |  46000 | HR         |
+|         6 | khushbu   | verma    |  32000 | HR         |
+|         5 | Krishna   | Gupta    |  48000 | hr         |
++-----------+-----------+----------+--------+------------+
+6 rows in set (0.00 sec)
+
+mysql> update worker set firstname = "ravi", lastname= "gupta" where worker_id=4;
+Query OK, 1 row affected (0.09 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from worker;
++-----------+-----------+----------+--------+------------+
+| worker_id | Firstname | Lastname | Salery | Department |
++-----------+-----------+----------+--------+------------+
+|         1 | Raj       | Gupta    |  50000 | Admin      |
+|         2 | ravi      | Verma    |  45000 | HR         |
+|         3 | Abhishek  | Singh    |  28000 | Account    |
+|         4 | ravi      | gupta    |  46000 | HR         |
+|         6 | khushbu   | verma    |  32000 | HR         |
+|         5 | Krishna   | Gupta    |  48000 | hr         |
++-----------+-----------+----------+--------+------------+
+6 rows in set (0.00 sec)
+
+mysql> update worker set firstname = "jyoti", lastname= "gupta" where worker_id=4;
+Query OK, 1 row affected (0.14 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from worker;
++-----------+-----------+----------+--------+------------+
+| worker_id | Firstname | Lastname | Salery | Department |
++-----------+-----------+----------+--------+------------+
+|         1 | Raj       | Gupta    |  50000 | Admin      |
+|         2 | ravi      | Verma    |  45000 | HR         |
+|         3 | Abhishek  | Singh    |  28000 | Account    |
+|         4 | jyoti     | gupta    |  46000 | HR         |
+|         6 | khushbu   | verma    |  32000 | HR         |
+|         5 | Krishna   | Gupta    |  48000 | hr         |
++-----------+-----------+----------+--------+------------+
+6 rows in set (0.00 sec)
+
+mysql> update worker set worker_id = 5 where salery= 32000;
+Query OK, 1 row affected (0.06 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from worker;
++-----------+-----------+----------+--------+------------+
+| worker_id | Firstname | Lastname | Salery | Department |
++-----------+-----------+----------+--------+------------+
+|         1 | Raj       | Gupta    |  50000 | Admin      |
+|         2 | ravi      | Verma    |  45000 | HR         |
+|         3 | Abhishek  | Singh    |  28000 | Account    |
+|         4 | jyoti     | gupta    |  46000 | HR         |
+|         5 | khushbu   | verma    |  32000 | HR         |
+|         5 | Krishna   | Gupta    |  48000 | hr         |
++-----------+-----------+----------+--------+------------+
+6 rows in set (0.00 sec)
+
+mysql> update worker set worker_id = 6 where salery= 48000;
+Query OK, 1 row affected (0.14 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from worker;
++-----------+-----------+----------+--------+------------+
+| worker_id | Firstname | Lastname | Salery | Department |
++-----------+-----------+----------+--------+------------+
+|         1 | Raj       | Gupta    |  50000 | Admin      |
+|         2 | ravi      | Verma    |  45000 | HR         |
+|         3 | Abhishek  | Singh    |  28000 | Account    |
+|         4 | jyoti     | gupta    |  46000 | HR         |
+|         5 | khushbu   | verma    |  32000 | HR         |
+|         6 | Krishna   | Gupta    |  48000 | hr         |
++-----------+-----------+----------+--------+------------+
+6 rows in set (0.00 sec)
+
+mysql> select * from worker where Department ="hr";
++-----------+-----------+----------+--------+------------+
+| worker_id | Firstname | Lastname | Salery | Department |
++-----------+-----------+----------+--------+------------+
+|         2 | ravi      | Verma    |  45000 | HR         |
+|         4 | jyoti     | gupta    |  46000 | HR         |
+|         5 | khushbu   | verma    |  32000 | HR         |
+|         6 | Krishna   | Gupta    |  48000 | hr         |
++-----------+-----------+----------+--------+------------+
+4 rows in set (0.00 sec)
+
+mysql> select * from worker;
++-----------+-----------+----------+--------+------------+
+| worker_id | Firstname | Lastname | Salery | Department |
++-----------+-----------+----------+--------+------------+
+|         1 | Raj       | Gupta    |  50000 | Admin      |
+|         2 | ravi      | Verma    |  45000 | HR         |
+|         3 | Abhishek  | Singh    |  28000 | Account    |
+|         4 | jyoti     | gupta    |  46000 | HR         |
+|         5 | khushbu   | verma    |  32000 | HR         |
+|         6 | Krishna   | Gupta    |  48000 | hr         |
++-----------+-----------+----------+--------+------------+
+6 rows in set (0.00 sec)
+
+mysql> select * from worker where firstname like "%aj";
++-----------+-----------+----------+--------+------------+
+| worker_id | Firstname | Lastname | Salery | Department |
++-----------+-----------+----------+--------+------------+
+|         1 | Raj       | Gupta    |  50000 | Admin      |
++-----------+-----------+----------+--------+------------+
+1 row in set (0.00 sec)
+
+mysql> select * from worker where firstname like "%na";
++-----------+-----------+----------+--------+------------+
+| worker_id | Firstname | Lastname | Salery | Department |
++-----------+-----------+----------+--------+------------+
+|         6 | Krishna   | Gupta    |  48000 | hr         |
++-----------+-----------+----------+--------+------------+
+1 row in set (0.00 sec)
+
+mysql> select * from worker where firstname like "r%";
++-----------+-----------+----------+--------+------------+
+| worker_id | Firstname | Lastname | Salery | Department |
++-----------+-----------+----------+--------+------------+
+|         1 | Raj       | Gupta    |  50000 | Admin      |
+|         2 | ravi      | Verma    |  45000 | HR         |
++-----------+-----------+----------+--------+------------+
+2 rows in set (0.00 sec)
+
+mysql> select * from worker where firstname like "k%";
++-----------+-----------+----------+--------+------------+
+| worker_id | Firstname | Lastname | Salery | Department |
++-----------+-----------+----------+--------+------------+
+|         5 | khushbu   | verma    |  32000 | HR         |
+|         6 | Krishna   | Gupta    |  48000 | hr         |
++-----------+-----------+----------+--------+------------+
+2 rows in set (0.00 sec)
+
+mysql> select * from worker order by firstname;
++-----------+-----------+----------+--------+------------+
+| worker_id | Firstname | Lastname | Salery | Department |
++-----------+-----------+----------+--------+------------+
+|         3 | Abhishek  | Singh    |  28000 | Account    |
+|         4 | jyoti     | gupta    |  46000 | HR         |
+|         5 | khushbu   | verma    |  32000 | HR         |
+|         6 | Krishna   | Gupta    |  48000 | hr         |
+|         1 | Raj       | Gupta    |  50000 | Admin      |
+|         2 | ravi      | Verma    |  45000 | HR         |
++-----------+-----------+----------+--------+------------+
+6 rows in set (0.02 sec)
+
+mysql> select * from worker order by firstname, salery;
++-----------+-----------+----------+--------+------------+
+| worker_id | Firstname | Lastname | Salery | Department |
++-----------+-----------+----------+--------+------------+
+|         3 | Abhishek  | Singh    |  28000 | Account    |
+|         4 | jyoti     | gupta    |  46000 | HR         |
+|         5 | khushbu   | verma    |  32000 | HR         |
+|         6 | Krishna   | Gupta    |  48000 | hr         |
+|         1 | Raj       | Gupta    |  50000 | Admin      |
+|         2 | ravi      | Verma    |  45000 | HR         |
++-----------+-----------+----------+--------+------------+
+6 rows in set (0.00 sec)
+
+mysql> select * from worker order by salery;
++-----------+-----------+----------+--------+------------+
+| worker_id | Firstname | Lastname | Salery | Department |
++-----------+-----------+----------+--------+------------+
+|         3 | Abhishek  | Singh    |  28000 | Account    |
+|         5 | khushbu   | verma    |  32000 | HR         |
+|         2 | ravi      | Verma    |  45000 | HR         |
+|         4 | jyoti     | gupta    |  46000 | HR         |
+|         6 | Krishna   | Gupta    |  48000 | hr         |
+|         1 | Raj       | Gupta    |  50000 | Admin      |
++-----------+-----------+----------+--------+------------+
+6 rows in set (0.00 sec)
+
+mysql> select * from worker order by worker_id desc;
++-----------+-----------+----------+--------+------------+
+| worker_id | Firstname | Lastname | Salery | Department |
++-----------+-----------+----------+--------+------------+
+|         6 | Krishna   | Gupta    |  48000 | hr         |
+|         5 | khushbu   | verma    |  32000 | HR         |
+|         4 | jyoti     | gupta    |  46000 | HR         |
+|         3 | Abhishek  | Singh    |  28000 | Account    |
+|         2 | ravi      | Verma    |  45000 | HR         |
+|         1 | Raj       | Gupta    |  50000 | Admin      |
++-----------+-----------+----------+--------+------------+
+6 rows in set (0.00 sec)
+
+mysql> select * from worker order by worker_id asc;
++-----------+-----------+----------+--------+------------+
+| worker_id | Firstname | Lastname | Salery | Department |
++-----------+-----------+----------+--------+------------+
+|         1 | Raj       | Gupta    |  50000 | Admin      |
+|         2 | ravi      | Verma    |  45000 | HR         |
+|         3 | Abhishek  | Singh    |  28000 | Account    |
+|         4 | jyoti     | gupta    |  46000 | HR         |
+|         5 | khushbu   | verma    |  32000 | HR         |
+|         6 | Krishna   | Gupta    |  48000 | hr         |
++-----------+-----------+----------+--------+------------+
+6 rows in set (0.00 sec)
+
+mysql> select * from worker limit 3;
++-----------+-----------+----------+--------+------------+
+| worker_id | Firstname | Lastname | Salery | Department |
++-----------+-----------+----------+--------+------------+
+|         1 | Raj       | Gupta    |  50000 | Admin      |
+|         2 | ravi      | Verma    |  45000 | HR         |
+|         3 | Abhishek  | Singh    |  28000 | Account    |
++-----------+-----------+----------+--------+------------+
+3 rows in set (0.00 sec)
+
+mysql> select * from worker limit 3;
++-----------+-----------+----------+--------+------------+
+| worker_id | Firstname | Lastname | Salery | Department |
++-----------+-----------+----------+--------+------------+
+|         1 | Raj       | Gupta    |  50000 | Admin      |
+|         2 | ravi      | Verma    |  45000 | HR         |
+|         3 | Abhishek  | Singh    |  28000 | Account    |
++-----------+-----------+----------+--------+------------+
+3 rows in set (0.00 sec)
+
+mysql> select * from worker limit 3 offset 2;
++-----------+-----------+----------+--------+------------+
+| worker_id | Firstname | Lastname | Salery | Department |
++-----------+-----------+----------+--------+------------+
+|         3 | Abhishek  | Singh    |  28000 | Account    |
+|         4 | jyoti     | gupta    |  46000 | HR         |
+|         5 | khushbu   | verma    |  32000 | HR         |
++-----------+-----------+----------+--------+------------+
+3 rows in set (0.00 sec)
+
+mysql> select * from worker limit 3 offset 4;
++-----------+-----------+----------+--------+------------+
+| worker_id | Firstname | Lastname | Salery | Department |
++-----------+-----------+----------+--------+------------+
+|         5 | khushbu   | verma    |  32000 | HR         |
+|         6 | Krishna   | Gupta    |  48000 | hr         |
++-----------+-----------+----------+--------+------------+
+2 rows in set (0.00 sec)
+
+mysql> select * from worker limit 5 offset 2;
++-----------+-----------+----------+--------+------------+
+| worker_id | Firstname | Lastname | Salery | Department |
++-----------+-----------+----------+--------+------------+
+|         3 | Abhishek  | Singh    |  28000 | Account    |
+|         4 | jyoti     | gupta    |  46000 | HR         |
+|         5 | khushbu   | verma    |  32000 | HR         |
+|         6 | Krishna   | Gupta    |  48000 | hr         |
++-----------+-----------+----------+--------+------------+
+4 rows in set (0.00 sec)
+
+mysql> select * from worker;
++-----------+-----------+----------+--------+------------+
+| worker_id | Firstname | Lastname | Salery | Department |
++-----------+-----------+----------+--------+------------+
+|         1 | Raj       | Gupta    |  50000 | Admin      |
+|         2 | ravi      | Verma    |  45000 | HR         |
+|         3 | Abhishek  | Singh    |  28000 | Account    |
+|         4 | jyoti     | gupta    |  46000 | HR         |
+|         5 | khushbu   | verma    |  32000 | HR         |
+|         6 | Krishna   | Gupta    |  48000 | hr         |
++-----------+-----------+----------+--------+------------+
+6 rows in set (0.00 sec)
+
+mysql> select * from worker limit 5;
++-----------+-----------+----------+--------+------------+
+| worker_id | Firstname | Lastname | Salery | Department |
++-----------+-----------+----------+--------+------------+
+|         1 | Raj       | Gupta    |  50000 | Admin      |
+|         2 | ravi      | Verma    |  45000 | HR         |
+|         3 | Abhishek  | Singh    |  28000 | Account    |
+|         4 | jyoti     | gupta    |  46000 | HR         |
+|         5 | khushbu   | verma    |  32000 | HR         |
++-----------+-----------+----------+--------+------------+
+5 rows in set (0.00 sec)
+
+mysql> select * from worker limit 5 offset 2;
++-----------+-----------+----------+--------+------------+
+| worker_id | Firstname | Lastname | Salery | Department |
++-----------+-----------+----------+--------+------------+
+|         3 | Abhishek  | Singh    |  28000 | Account    |
+|         4 | jyoti     | gupta    |  46000 | HR         |
+|         5 | khushbu   | verma    |  32000 | HR         |
+|         6 | Krishna   | Gupta    |  48000 | hr         |
++-----------+-----------+----------+--------+------------+
+4 rows in set (0.00 sec)
+
+mysql> select * from worker limit 3 offset 2;
++-----------+-----------+----------+--------+------------+
+| worker_id | Firstname | Lastname | Salery | Department |
++-----------+-----------+----------+--------+------------+
+|         3 | Abhishek  | Singh    |  28000 | Account    |
+|         4 | jyoti     | gupta    |  46000 | HR         |
+|         5 | khushbu   | verma    |  32000 | HR         |
++-----------+-----------+----------+--------+------------+
+3 rows in set (0.00 sec)
+
+mysql> select * from worker limit 2 offset 3;
++-----------+-----------+----------+--------+------------+
+| worker_id | Firstname | Lastname | Salery | Department |
++-----------+-----------+----------+--------+------------+
+|         4 | jyoti     | gupta    |  46000 | HR         |
+|         5 | khushbu   | verma    |  32000 | HR         |
++-----------+-----------+----------+--------+------------+
+2 rows in set (0.00 sec)
+
+mysql> select * from worker limit 2 offset 3;
++-----------+-----------+----------+--------+------------+
+| worker_id | Firstname | Lastname | Salery | Department |
++-----------+-----------+----------+--------+------------+
+|         4 | jyoti     | gupta    |  46000 | HR         |
+|         5 | khushbu   | verma    |  32000 | HR         |
++-----------+-----------+----------+--------+------------+
+2 rows in set (0.00 sec)
+
+mysql> select * from worker limit 2 offset 4;
++-----------+-----------+----------+--------+------------+
+| worker_id | Firstname | Lastname | Salery | Department |
++-----------+-----------+----------+--------+------------+
+|         5 | khushbu   | verma    |  32000 | HR         |
+|         6 | Krishna   | Gupta    |  48000 | hr         |
++-----------+-----------+----------+--------+------------+
+2 rows in set (0.00 sec)
+
+mysql> select * from worker limit 4 offset 4;
++-----------+-----------+----------+--------+------------+
+| worker_id | Firstname | Lastname | Salery | Department |
++-----------+-----------+----------+--------+------------+
+|         5 | khushbu   | verma    |  32000 | HR         |
+|         6 | Krishna   | Gupta    |  48000 | hr         |
++-----------+-----------+----------+--------+------------+
+2 rows in set (0.00 sec)
+
+mysql> select * from worker limit 4 offset 2;
++-----------+-----------+----------+--------+------------+
+| worker_id | Firstname | Lastname | Salery | Department |
++-----------+-----------+----------+--------+------------+
+|         3 | Abhishek  | Singh    |  28000 | Account    |
+|         4 | jyoti     | gupta    |  46000 | HR         |
+|         5 | khushbu   | verma    |  32000 | HR         |
+|         6 | Krishna   | Gupta    |  48000 | hr         |
++-----------+-----------+----------+--------+------------+
+4 rows in set (0.00 sec)
